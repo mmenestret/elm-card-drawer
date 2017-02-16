@@ -18,7 +18,7 @@ main =
     }
 
 -- MODEL
-
+-- Describes the model of the application: there can be a card (or not if it hasn't been drawn for the first time)
 type alias Model =
   { card : Maybe Card
   }
@@ -28,9 +28,10 @@ init = (Model Nothing, Cmd.none)
 
 
 -- UPDATE
-
+-- The different types of Msg that can be produced
 type Msg = Pick | NewCard (Maybe Card)
 
+-- Each time a Msg is produced (e.g. an 'onclick') the update function is called by Elm and it produces a new Model
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
@@ -41,12 +42,12 @@ update msg model =
 
 
 -- SUBSCRIPTIONS
-
+-- Other sources of Msg (e.g. web sockets)
 subscriptions : Model -> Sub Msg
 subscriptions model = Sub.none
 
 -- VIEW
-
+-- How the HTML/Js has to be rendered based on the Model state
 view : Model -> Html Msg
 view model =
   div []
