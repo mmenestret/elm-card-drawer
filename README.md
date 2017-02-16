@@ -10,5 +10,5 @@ It might evolve a bit :).
 
 - Clone it
 - `elm-make index.elm --output index.html`
-- Open index
-- Voilà
+- Open `index.html`
+- Voilà !
