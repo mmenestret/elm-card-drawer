@@ -13,12 +13,11 @@ colourToString col =
 figureToString : Figure -> String
 figureToString fig = toString fig
 
-cardToString : Maybe Card -> String
+cardToString : Card -> String
 cardToString card =
   case card of
-  Just (Card fig col) ->
-      let
-        figAsString = figureToString fig
-        colAsString = colourToString col
-      in figAsString ++ " of " ++ colAsString
-  Nothing -> "No card have been drawn"
+      Card fig col ->
+          let
+            figAsString = figureToString fig
+            colAsString = colourToString col
+          in figAsString ++ " of " ++ colAsString

@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Events exposing (..)
 import Random exposing(..)
 
-import Models exposing (figures, colours, Card)
+import Models exposing (..)
 import Logic exposing (newCardGen)
 import Utils exposing (cardToString)
 
@@ -18,18 +18,16 @@ main =
     }
 
 -- MODEL
--- Describes the model of the application: there can be a card (or not if it hasn't been drawn for the first time)
-type alias Model =
-  { card : Maybe Card
-  }
+-- Describes the model of the application (a simple Card here)
+type alias Model = Card
   
 init : (Model, Cmd Msg)
-init = (Model Nothing, Cmd.none)
+init = (Card Ace Spades, Cmd.none)
 
 
 -- UPDATE
 -- The different types of Msg that can be produced
-type Msg = Pick | NewCard (Maybe Card)
+type Msg = Pick | NewCard Card
 
 -- Each time a Msg is produced (e.g. an 'onclick') the update function is called by Elm and it produces a new Model
 update : Msg -> Model -> (Model, Cmd Msg)
@@ -38,7 +36,7 @@ update msg model =
     Pick ->
       (model, generate NewCard (newCardGen figures colours))
     NewCard newCard ->
-      (Model newCard, Cmd.none)
+      (newCard, Cmd.none)
 
 
 -- SUBSCRIPTIONS
@@ -51,7 +49,7 @@ subscriptions model = Sub.none
 view : Model -> Html Msg
 view model =
   div []
-    [ h1 [] [ text (cardToString model.card) ]
+    [ h1 [] [ text (cardToString model) ]
     , button [ onClick Pick ] [ text "Pick a new card" ]
     ]
 
