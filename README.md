@@ -9,6 +9,6 @@ It might evolve a bit :).
 ## How to use it
 
 - Clone it
-- `elm-make index.elm --output index.html`
+- `elm-make src/index.elm --output index.html`
 - Open `index.html`
 - Voilà !
